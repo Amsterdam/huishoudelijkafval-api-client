@@ -43,12 +43,14 @@ class WegingApi:
 
 
     @validate_call
-    async def huishoudelijkafval_weging_list2(
+    async def huishoudelijkafval_weging_list_slash(
         self,
         accept_crs: Annotated[Optional[StrictStr], Field(description="Accept-Crs header for Geo queries")] = None,
         content_crs: Annotated[Optional[StrictStr], Field(description="Content-Crs header for Geo queries")] = None,
         x_api_key: Annotated[Optional[StrictStr], Field(description="Api Key for statistical purposes, not for authentication")] = None,
         count: Annotated[Optional[StrictBool], Field(description="Include a count of the total result set and the number of pages.Only works for responses that return a page.")] = None,
+        csv_header: Annotated[Optional[StrictStr], Field(description="Specify type of header for csv file")] = None,
+        csv_separator: Annotated[Optional[StrictStr], Field(description="Specify type of separator for csv file")] = None,
         expand: Annotated[Optional[StrictBool], Field(description="Allow to expand relations.")] = None,
         expand_scope: Annotated[Optional[StrictStr], Field(description="Comma separated list of named relations to expand.")] = None,
         fields: Annotated[Optional[StrictStr], Field(description="Comma-separated list of fields to display")] = None,
@@ -67,7 +69,7 @@ class WegingApi:
         bag_nummeraanduiding_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
         bag_nummeraanduiding_identificatie_like: Annotated[Optional[StrictStr], Field(description="Matches text using wildcards (? and *).")] = None,
         bag_nummeraanduiding_identificatie_not: Annotated[Optional[List[StrictStr]], Field(description="Exclude matches; text")] = None,
-        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="De unieke aanduiding van een openbare ruimte")] = None,
+        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="Unieke identificatie van een openbare ruimte")] = None,
         bag_openbareruimte_identificatie_in: Annotated[Optional[List[StrictStr]], Field(description="Matches any value from a comma-separated list: val1,val2,valN.")] = None,
         bag_openbareruimte_identificatie_isempty: Annotated[Optional[StrictBool], Field(description="Whether the field is empty or not.")] = None,
         bag_openbareruimte_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
@@ -223,7 +225,7 @@ class WegingApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PaginatedHuishoudelijkafvalwegingList:
-        """huishoudelijkafval_weging_list2
+        """huishoudelijkafval_weging_list_slash
 
 
         :param accept_crs: Accept-Crs header for Geo queries
@@ -234,6 +236,10 @@ class WegingApi:
         :type x_api_key: str
         :param count: Include a count of the total result set and the number of pages.Only works for responses that return a page.
         :type count: bool
+        :param csv_header: Specify type of header for csv file
+        :type csv_header: str
+        :param csv_separator: Specify type of separator for csv file
+        :type csv_separator: str
         :param expand: Allow to expand relations.
         :type expand: bool
         :param expand_scope: Comma separated list of named relations to expand.
@@ -270,7 +276,7 @@ class WegingApi:
         :type bag_nummeraanduiding_identificatie_like: str
         :param bag_nummeraanduiding_identificatie_not: Exclude matches; text
         :type bag_nummeraanduiding_identificatie_not: List[str]
-        :param bag_openbareruimte_identificatie: De unieke aanduiding van een openbare ruimte
+        :param bag_openbareruimte_identificatie: Unieke identificatie van een openbare ruimte
         :type bag_openbareruimte_identificatie: str
         :param bag_openbareruimte_identificatie_in: Matches any value from a comma-separated list: val1,val2,valN.
         :type bag_openbareruimte_identificatie_in: List[str]
@@ -578,11 +584,13 @@ class WegingApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._huishoudelijkafval_weging_list2_serialize(
+        _param = self._huishoudelijkafval_weging_list_slash_serialize(
             accept_crs=accept_crs,
             content_crs=content_crs,
             x_api_key=x_api_key,
             count=count,
+            csv_header=csv_header,
+            csv_separator=csv_separator,
             expand=expand,
             expand_scope=expand_scope,
             fields=fields,
@@ -765,12 +773,14 @@ class WegingApi:
 
 
     @validate_call
-    async def huishoudelijkafval_weging_list2_with_http_info(
+    async def huishoudelijkafval_weging_list_slash_with_http_info(
         self,
         accept_crs: Annotated[Optional[StrictStr], Field(description="Accept-Crs header for Geo queries")] = None,
         content_crs: Annotated[Optional[StrictStr], Field(description="Content-Crs header for Geo queries")] = None,
         x_api_key: Annotated[Optional[StrictStr], Field(description="Api Key for statistical purposes, not for authentication")] = None,
         count: Annotated[Optional[StrictBool], Field(description="Include a count of the total result set and the number of pages.Only works for responses that return a page.")] = None,
+        csv_header: Annotated[Optional[StrictStr], Field(description="Specify type of header for csv file")] = None,
+        csv_separator: Annotated[Optional[StrictStr], Field(description="Specify type of separator for csv file")] = None,
         expand: Annotated[Optional[StrictBool], Field(description="Allow to expand relations.")] = None,
         expand_scope: Annotated[Optional[StrictStr], Field(description="Comma separated list of named relations to expand.")] = None,
         fields: Annotated[Optional[StrictStr], Field(description="Comma-separated list of fields to display")] = None,
@@ -789,7 +799,7 @@ class WegingApi:
         bag_nummeraanduiding_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
         bag_nummeraanduiding_identificatie_like: Annotated[Optional[StrictStr], Field(description="Matches text using wildcards (? and *).")] = None,
         bag_nummeraanduiding_identificatie_not: Annotated[Optional[List[StrictStr]], Field(description="Exclude matches; text")] = None,
-        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="De unieke aanduiding van een openbare ruimte")] = None,
+        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="Unieke identificatie van een openbare ruimte")] = None,
         bag_openbareruimte_identificatie_in: Annotated[Optional[List[StrictStr]], Field(description="Matches any value from a comma-separated list: val1,val2,valN.")] = None,
         bag_openbareruimte_identificatie_isempty: Annotated[Optional[StrictBool], Field(description="Whether the field is empty or not.")] = None,
         bag_openbareruimte_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
@@ -945,7 +955,7 @@ class WegingApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PaginatedHuishoudelijkafvalwegingList]:
-        """huishoudelijkafval_weging_list2
+        """huishoudelijkafval_weging_list_slash
 
 
         :param accept_crs: Accept-Crs header for Geo queries
@@ -956,6 +966,10 @@ class WegingApi:
         :type x_api_key: str
         :param count: Include a count of the total result set and the number of pages.Only works for responses that return a page.
         :type count: bool
+        :param csv_header: Specify type of header for csv file
+        :type csv_header: str
+        :param csv_separator: Specify type of separator for csv file
+        :type csv_separator: str
         :param expand: Allow to expand relations.
         :type expand: bool
         :param expand_scope: Comma separated list of named relations to expand.
@@ -992,7 +1006,7 @@ class WegingApi:
         :type bag_nummeraanduiding_identificatie_like: str
         :param bag_nummeraanduiding_identificatie_not: Exclude matches; text
         :type bag_nummeraanduiding_identificatie_not: List[str]
-        :param bag_openbareruimte_identificatie: De unieke aanduiding van een openbare ruimte
+        :param bag_openbareruimte_identificatie: Unieke identificatie van een openbare ruimte
         :type bag_openbareruimte_identificatie: str
         :param bag_openbareruimte_identificatie_in: Matches any value from a comma-separated list: val1,val2,valN.
         :type bag_openbareruimte_identificatie_in: List[str]
@@ -1300,11 +1314,13 @@ class WegingApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._huishoudelijkafval_weging_list2_serialize(
+        _param = self._huishoudelijkafval_weging_list_slash_serialize(
             accept_crs=accept_crs,
             content_crs=content_crs,
             x_api_key=x_api_key,
             count=count,
+            csv_header=csv_header,
+            csv_separator=csv_separator,
             expand=expand,
             expand_scope=expand_scope,
             fields=fields,
@@ -1487,12 +1503,14 @@ class WegingApi:
 
 
     @validate_call
-    async def huishoudelijkafval_weging_list2_without_preload_content(
+    async def huishoudelijkafval_weging_list_slash_without_preload_content(
         self,
         accept_crs: Annotated[Optional[StrictStr], Field(description="Accept-Crs header for Geo queries")] = None,
         content_crs: Annotated[Optional[StrictStr], Field(description="Content-Crs header for Geo queries")] = None,
         x_api_key: Annotated[Optional[StrictStr], Field(description="Api Key for statistical purposes, not for authentication")] = None,
         count: Annotated[Optional[StrictBool], Field(description="Include a count of the total result set and the number of pages.Only works for responses that return a page.")] = None,
+        csv_header: Annotated[Optional[StrictStr], Field(description="Specify type of header for csv file")] = None,
+        csv_separator: Annotated[Optional[StrictStr], Field(description="Specify type of separator for csv file")] = None,
         expand: Annotated[Optional[StrictBool], Field(description="Allow to expand relations.")] = None,
         expand_scope: Annotated[Optional[StrictStr], Field(description="Comma separated list of named relations to expand.")] = None,
         fields: Annotated[Optional[StrictStr], Field(description="Comma-separated list of fields to display")] = None,
@@ -1511,7 +1529,7 @@ class WegingApi:
         bag_nummeraanduiding_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
         bag_nummeraanduiding_identificatie_like: Annotated[Optional[StrictStr], Field(description="Matches text using wildcards (? and *).")] = None,
         bag_nummeraanduiding_identificatie_not: Annotated[Optional[List[StrictStr]], Field(description="Exclude matches; text")] = None,
-        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="De unieke aanduiding van een openbare ruimte")] = None,
+        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="Unieke identificatie van een openbare ruimte")] = None,
         bag_openbareruimte_identificatie_in: Annotated[Optional[List[StrictStr]], Field(description="Matches any value from a comma-separated list: val1,val2,valN.")] = None,
         bag_openbareruimte_identificatie_isempty: Annotated[Optional[StrictBool], Field(description="Whether the field is empty or not.")] = None,
         bag_openbareruimte_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
@@ -1667,7 +1685,7 @@ class WegingApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """huishoudelijkafval_weging_list2
+        """huishoudelijkafval_weging_list_slash
 
 
         :param accept_crs: Accept-Crs header for Geo queries
@@ -1678,6 +1696,10 @@ class WegingApi:
         :type x_api_key: str
         :param count: Include a count of the total result set and the number of pages.Only works for responses that return a page.
         :type count: bool
+        :param csv_header: Specify type of header for csv file
+        :type csv_header: str
+        :param csv_separator: Specify type of separator for csv file
+        :type csv_separator: str
         :param expand: Allow to expand relations.
         :type expand: bool
         :param expand_scope: Comma separated list of named relations to expand.
@@ -1714,7 +1736,7 @@ class WegingApi:
         :type bag_nummeraanduiding_identificatie_like: str
         :param bag_nummeraanduiding_identificatie_not: Exclude matches; text
         :type bag_nummeraanduiding_identificatie_not: List[str]
-        :param bag_openbareruimte_identificatie: De unieke aanduiding van een openbare ruimte
+        :param bag_openbareruimte_identificatie: Unieke identificatie van een openbare ruimte
         :type bag_openbareruimte_identificatie: str
         :param bag_openbareruimte_identificatie_in: Matches any value from a comma-separated list: val1,val2,valN.
         :type bag_openbareruimte_identificatie_in: List[str]
@@ -2022,11 +2044,13 @@ class WegingApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._huishoudelijkafval_weging_list2_serialize(
+        _param = self._huishoudelijkafval_weging_list_slash_serialize(
             accept_crs=accept_crs,
             content_crs=content_crs,
             x_api_key=x_api_key,
             count=count,
+            csv_header=csv_header,
+            csv_separator=csv_separator,
             expand=expand,
             expand_scope=expand_scope,
             fields=fields,
@@ -2204,12 +2228,14 @@ class WegingApi:
         return response_data.response
 
 
-    def _huishoudelijkafval_weging_list2_serialize(
+    def _huishoudelijkafval_weging_list_slash_serialize(
         self,
         accept_crs,
         content_crs,
         x_api_key,
         count,
+        csv_header,
+        csv_separator,
         expand,
         expand_scope,
         fields,
@@ -2438,6 +2464,14 @@ class WegingApi:
         if count is not None:
             
             _query_params.append(('_count', count))
+            
+        if csv_header is not None:
+            
+            _query_params.append(('_csv_header', csv_header))
+            
+        if csv_separator is not None:
+            
+            _query_params.append(('_csv_separator', csv_separator))
             
         if expand is not None:
             
@@ -3219,12 +3253,14 @@ class WegingApi:
 
 
     @validate_call
-    async def huishoudelijkafval_weging_retrieve2(
+    async def huishoudelijkafval_weging_retrieve_slash(
         self,
         id: Annotated[str, Field(strict=True)],
         accept_crs: Annotated[Optional[StrictStr], Field(description="Accept-Crs header for Geo queries")] = None,
         content_crs: Annotated[Optional[StrictStr], Field(description="Content-Crs header for Geo queries")] = None,
         x_api_key: Annotated[Optional[StrictStr], Field(description="Api Key for statistical purposes, not for authentication")] = None,
+        csv_header: Annotated[Optional[StrictStr], Field(description="Specify type of header for csv file")] = None,
+        csv_separator: Annotated[Optional[StrictStr], Field(description="Specify type of separator for csv file")] = None,
         expand: Annotated[Optional[StrictBool], Field(description="Allow to expand relations.")] = None,
         expand_scope: Annotated[Optional[StrictStr], Field(description="Comma separated list of named relations to expand.")] = None,
         fields: Annotated[Optional[StrictStr], Field(description="Comma-separated list of fields to display")] = None,
@@ -3242,7 +3278,7 @@ class WegingApi:
         bag_nummeraanduiding_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
         bag_nummeraanduiding_identificatie_like: Annotated[Optional[StrictStr], Field(description="Matches text using wildcards (? and *).")] = None,
         bag_nummeraanduiding_identificatie_not: Annotated[Optional[List[StrictStr]], Field(description="Exclude matches; text")] = None,
-        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="De unieke aanduiding van een openbare ruimte")] = None,
+        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="Unieke identificatie van een openbare ruimte")] = None,
         bag_openbareruimte_identificatie_in: Annotated[Optional[List[StrictStr]], Field(description="Matches any value from a comma-separated list: val1,val2,valN.")] = None,
         bag_openbareruimte_identificatie_isempty: Annotated[Optional[StrictBool], Field(description="Whether the field is empty or not.")] = None,
         bag_openbareruimte_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
@@ -3397,7 +3433,7 @@ class WegingApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Huishoudelijkafvalweging:
-        """huishoudelijkafval_weging_retrieve2
+        """huishoudelijkafval_weging_retrieve_slash
 
 
         :param id: (required)
@@ -3408,6 +3444,10 @@ class WegingApi:
         :type content_crs: str
         :param x_api_key: Api Key for statistical purposes, not for authentication
         :type x_api_key: str
+        :param csv_header: Specify type of header for csv file
+        :type csv_header: str
+        :param csv_separator: Specify type of separator for csv file
+        :type csv_separator: str
         :param expand: Allow to expand relations.
         :type expand: bool
         :param expand_scope: Comma separated list of named relations to expand.
@@ -3442,7 +3482,7 @@ class WegingApi:
         :type bag_nummeraanduiding_identificatie_like: str
         :param bag_nummeraanduiding_identificatie_not: Exclude matches; text
         :type bag_nummeraanduiding_identificatie_not: List[str]
-        :param bag_openbareruimte_identificatie: De unieke aanduiding van een openbare ruimte
+        :param bag_openbareruimte_identificatie: Unieke identificatie van een openbare ruimte
         :type bag_openbareruimte_identificatie: str
         :param bag_openbareruimte_identificatie_in: Matches any value from a comma-separated list: val1,val2,valN.
         :type bag_openbareruimte_identificatie_in: List[str]
@@ -3748,11 +3788,13 @@ class WegingApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._huishoudelijkafval_weging_retrieve2_serialize(
+        _param = self._huishoudelijkafval_weging_retrieve_slash_serialize(
             id=id,
             accept_crs=accept_crs,
             content_crs=content_crs,
             x_api_key=x_api_key,
+            csv_header=csv_header,
+            csv_separator=csv_separator,
             expand=expand,
             expand_scope=expand_scope,
             fields=fields,
@@ -3933,12 +3975,14 @@ class WegingApi:
 
 
     @validate_call
-    async def huishoudelijkafval_weging_retrieve2_with_http_info(
+    async def huishoudelijkafval_weging_retrieve_slash_with_http_info(
         self,
         id: Annotated[str, Field(strict=True)],
         accept_crs: Annotated[Optional[StrictStr], Field(description="Accept-Crs header for Geo queries")] = None,
         content_crs: Annotated[Optional[StrictStr], Field(description="Content-Crs header for Geo queries")] = None,
         x_api_key: Annotated[Optional[StrictStr], Field(description="Api Key for statistical purposes, not for authentication")] = None,
+        csv_header: Annotated[Optional[StrictStr], Field(description="Specify type of header for csv file")] = None,
+        csv_separator: Annotated[Optional[StrictStr], Field(description="Specify type of separator for csv file")] = None,
         expand: Annotated[Optional[StrictBool], Field(description="Allow to expand relations.")] = None,
         expand_scope: Annotated[Optional[StrictStr], Field(description="Comma separated list of named relations to expand.")] = None,
         fields: Annotated[Optional[StrictStr], Field(description="Comma-separated list of fields to display")] = None,
@@ -3956,7 +4000,7 @@ class WegingApi:
         bag_nummeraanduiding_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
         bag_nummeraanduiding_identificatie_like: Annotated[Optional[StrictStr], Field(description="Matches text using wildcards (? and *).")] = None,
         bag_nummeraanduiding_identificatie_not: Annotated[Optional[List[StrictStr]], Field(description="Exclude matches; text")] = None,
-        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="De unieke aanduiding van een openbare ruimte")] = None,
+        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="Unieke identificatie van een openbare ruimte")] = None,
         bag_openbareruimte_identificatie_in: Annotated[Optional[List[StrictStr]], Field(description="Matches any value from a comma-separated list: val1,val2,valN.")] = None,
         bag_openbareruimte_identificatie_isempty: Annotated[Optional[StrictBool], Field(description="Whether the field is empty or not.")] = None,
         bag_openbareruimte_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
@@ -4111,7 +4155,7 @@ class WegingApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Huishoudelijkafvalweging]:
-        """huishoudelijkafval_weging_retrieve2
+        """huishoudelijkafval_weging_retrieve_slash
 
 
         :param id: (required)
@@ -4122,6 +4166,10 @@ class WegingApi:
         :type content_crs: str
         :param x_api_key: Api Key for statistical purposes, not for authentication
         :type x_api_key: str
+        :param csv_header: Specify type of header for csv file
+        :type csv_header: str
+        :param csv_separator: Specify type of separator for csv file
+        :type csv_separator: str
         :param expand: Allow to expand relations.
         :type expand: bool
         :param expand_scope: Comma separated list of named relations to expand.
@@ -4156,7 +4204,7 @@ class WegingApi:
         :type bag_nummeraanduiding_identificatie_like: str
         :param bag_nummeraanduiding_identificatie_not: Exclude matches; text
         :type bag_nummeraanduiding_identificatie_not: List[str]
-        :param bag_openbareruimte_identificatie: De unieke aanduiding van een openbare ruimte
+        :param bag_openbareruimte_identificatie: Unieke identificatie van een openbare ruimte
         :type bag_openbareruimte_identificatie: str
         :param bag_openbareruimte_identificatie_in: Matches any value from a comma-separated list: val1,val2,valN.
         :type bag_openbareruimte_identificatie_in: List[str]
@@ -4462,11 +4510,13 @@ class WegingApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._huishoudelijkafval_weging_retrieve2_serialize(
+        _param = self._huishoudelijkafval_weging_retrieve_slash_serialize(
             id=id,
             accept_crs=accept_crs,
             content_crs=content_crs,
             x_api_key=x_api_key,
+            csv_header=csv_header,
+            csv_separator=csv_separator,
             expand=expand,
             expand_scope=expand_scope,
             fields=fields,
@@ -4647,12 +4697,14 @@ class WegingApi:
 
 
     @validate_call
-    async def huishoudelijkafval_weging_retrieve2_without_preload_content(
+    async def huishoudelijkafval_weging_retrieve_slash_without_preload_content(
         self,
         id: Annotated[str, Field(strict=True)],
         accept_crs: Annotated[Optional[StrictStr], Field(description="Accept-Crs header for Geo queries")] = None,
         content_crs: Annotated[Optional[StrictStr], Field(description="Content-Crs header for Geo queries")] = None,
         x_api_key: Annotated[Optional[StrictStr], Field(description="Api Key for statistical purposes, not for authentication")] = None,
+        csv_header: Annotated[Optional[StrictStr], Field(description="Specify type of header for csv file")] = None,
+        csv_separator: Annotated[Optional[StrictStr], Field(description="Specify type of separator for csv file")] = None,
         expand: Annotated[Optional[StrictBool], Field(description="Allow to expand relations.")] = None,
         expand_scope: Annotated[Optional[StrictStr], Field(description="Comma separated list of named relations to expand.")] = None,
         fields: Annotated[Optional[StrictStr], Field(description="Comma-separated list of fields to display")] = None,
@@ -4670,7 +4722,7 @@ class WegingApi:
         bag_nummeraanduiding_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
         bag_nummeraanduiding_identificatie_like: Annotated[Optional[StrictStr], Field(description="Matches text using wildcards (? and *).")] = None,
         bag_nummeraanduiding_identificatie_not: Annotated[Optional[List[StrictStr]], Field(description="Exclude matches; text")] = None,
-        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="De unieke aanduiding van een openbare ruimte")] = None,
+        bag_openbareruimte_identificatie: Annotated[Optional[StrictStr], Field(description="Unieke identificatie van een openbare ruimte")] = None,
         bag_openbareruimte_identificatie_in: Annotated[Optional[List[StrictStr]], Field(description="Matches any value from a comma-separated list: val1,val2,valN.")] = None,
         bag_openbareruimte_identificatie_isempty: Annotated[Optional[StrictBool], Field(description="Whether the field is empty or not.")] = None,
         bag_openbareruimte_identificatie_isnull: Annotated[Optional[StrictBool], Field(description="Whether the field has a NULL value or not.")] = None,
@@ -4825,7 +4877,7 @@ class WegingApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """huishoudelijkafval_weging_retrieve2
+        """huishoudelijkafval_weging_retrieve_slash
 
 
         :param id: (required)
@@ -4836,6 +4888,10 @@ class WegingApi:
         :type content_crs: str
         :param x_api_key: Api Key for statistical purposes, not for authentication
         :type x_api_key: str
+        :param csv_header: Specify type of header for csv file
+        :type csv_header: str
+        :param csv_separator: Specify type of separator for csv file
+        :type csv_separator: str
         :param expand: Allow to expand relations.
         :type expand: bool
         :param expand_scope: Comma separated list of named relations to expand.
@@ -4870,7 +4926,7 @@ class WegingApi:
         :type bag_nummeraanduiding_identificatie_like: str
         :param bag_nummeraanduiding_identificatie_not: Exclude matches; text
         :type bag_nummeraanduiding_identificatie_not: List[str]
-        :param bag_openbareruimte_identificatie: De unieke aanduiding van een openbare ruimte
+        :param bag_openbareruimte_identificatie: Unieke identificatie van een openbare ruimte
         :type bag_openbareruimte_identificatie: str
         :param bag_openbareruimte_identificatie_in: Matches any value from a comma-separated list: val1,val2,valN.
         :type bag_openbareruimte_identificatie_in: List[str]
@@ -5176,11 +5232,13 @@ class WegingApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._huishoudelijkafval_weging_retrieve2_serialize(
+        _param = self._huishoudelijkafval_weging_retrieve_slash_serialize(
             id=id,
             accept_crs=accept_crs,
             content_crs=content_crs,
             x_api_key=x_api_key,
+            csv_header=csv_header,
+            csv_separator=csv_separator,
             expand=expand,
             expand_scope=expand_scope,
             fields=fields,
@@ -5356,12 +5414,14 @@ class WegingApi:
         return response_data.response
 
 
-    def _huishoudelijkafval_weging_retrieve2_serialize(
+    def _huishoudelijkafval_weging_retrieve_slash_serialize(
         self,
         id,
         accept_crs,
         content_crs,
         x_api_key,
+        csv_header,
+        csv_separator,
         expand,
         expand_scope,
         fields,
@@ -5587,6 +5647,14 @@ class WegingApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
+        if csv_header is not None:
+            
+            _query_params.append(('_csv_header', csv_header))
+            
+        if csv_separator is not None:
+            
+            _query_params.append(('_csv_separator', csv_separator))
+            
         if expand is not None:
             
             _query_params.append(('_expand', expand))

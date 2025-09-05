@@ -1,6 +1,33 @@
 # flake8: noqa
 
-# import apis into api package
+if __import__("typing").TYPE_CHECKING:
+    # import apis into api package
+    from huishoudelijkafval_api_client.api.adres_loopafstand_v2_api import AdresLoopafstandV2Api
+    from huishoudelijkafval_api_client.api.bag_object_loopafstand_v2_api import BagObjectLoopafstandV2Api
+    from huishoudelijkafval_api_client.api.bijplaatsingen_api import BijplaatsingenApi
+    from huishoudelijkafval_api_client.api.cluster_api import ClusterApi
+    from huishoudelijkafval_api_client.api.clusterfractie_api import ClusterfractieApi
+    from huishoudelijkafval_api_client.api.container_api import ContainerApi
+    from huishoudelijkafval_api_client.api.containerlocatie_api import ContainerlocatieApi
+    from huishoudelijkafval_api_client.api.containertype_api import ContainertypeApi
+    from huishoudelijkafval_api_client.api.loopafstand_categorie_v2_api import LoopafstandCategorieV2Api
+    from huishoudelijkafval_api_client.api.planning_voertuigen_api import PlanningVoertuigenApi
+    from huishoudelijkafval_api_client.api.rolcontainer_api import RolcontainerApi
+    from huishoudelijkafval_api_client.api.rolcontainer_actie_api import RolcontainerActieApi
+    from huishoudelijkafval_api_client.api.rolcontainer_melding_api import RolcontainerMeldingApi
+    from huishoudelijkafval_api_client.api.rolcontainer_status_api import RolcontainerStatusApi
+    from huishoudelijkafval_api_client.api.servicegebieden_api import ServicegebiedenApi
+    from huishoudelijkafval_api_client.api.servicegebieden_locatie_api import ServicegebiedenLocatieApi
+    from huishoudelijkafval_api_client.api.ticket_api import TicketApi
+    from huishoudelijkafval_api_client.api.weging_api import WegingApi
+    
+else:
+    from lazy_imports import LazyModule, as_package, load
+
+    load(
+        LazyModule(
+            *as_package(__file__),
+            """# import apis into api package
 from huishoudelijkafval_api_client.api.adres_loopafstand_v2_api import AdresLoopafstandV2Api
 from huishoudelijkafval_api_client.api.bag_object_loopafstand_v2_api import BagObjectLoopafstandV2Api
 from huishoudelijkafval_api_client.api.bijplaatsingen_api import BijplaatsingenApi
@@ -20,3 +47,8 @@ from huishoudelijkafval_api_client.api.servicegebieden_locatie_api import Servic
 from huishoudelijkafval_api_client.api.ticket_api import TicketApi
 from huishoudelijkafval_api_client.api.weging_api import WegingApi
 
+""",
+            name=__name__,
+            doc=__doc__,
+        )
+    )
